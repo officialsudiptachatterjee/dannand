@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dannand</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f2eaff;
+      color: #2e003e;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      color: #5f00a5;
+    }
+
+    /* Container */
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding: 40px 20px;
+    }
+
+    /* Pricing Table Box */
+    .pricing-table {
+      background: #fff0ff;
+      border-radius: 14px;
+      box-shadow: 0 8px 20px rgba(139, 0, 139, 0.2);
+      overflow: hidden;
+      width: 320px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 2px solid #d896ff;
+    }
+
+    .pricing-table:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(139, 0, 139, 0.25);
+    }
+
+    /* Header */
+    .pricing-header {
+      background: linear-gradient(to right, #a000ff, #d896ff);
+      color: white;
+      padding: 20px;
+      font-size: 1.5rem;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td, th {
+      padding: 15px 20px;
+      text-align: left;
+      border-bottom: 1px solid #e2c7ff;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #6a009e;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #5f00a5;
+      color: white;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-top: 40px;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Dannand</h1>
+
+<div class="container">
+  <!-- INR Table -->
+  <div class="pricing-table">
+    <div class="pricing-header">Prices in INR (₹)</div>
+    <table>
+      <tbody id="inr-table"></tbody>
+    </table>
+  </div>
+
+  <!-- USD Table -->
+  <div class="pricing-table">
+    <div class="pricing-header">Prices in USD ($)</div>
+    <table>
+      <tbody id="usd-table"></tbody>
+    </table>
+  </div>
+</div>
+
+<footer>
+  Made with ❤️ by Sudipta Chatterjee
+</footer>
+
+<script>
+  // Services and their INR base prices
+  const services = [
+    { name: 'Astrology', priceINR: 477 },
+    { name: 'Numerology (Basic)', priceINR: 777 },
+    { name: 'Numerology (Advanced)', priceINR: 888 },
+    { name: 'Tarot Reading', priceINR: 1277 },
+    { name: 'Vastu Consultation', priceINR: 2777 },
+  ];
+
+  const exchangeRate = 0.012; // 1 INR = 0.012 USD
+  const usdAdditional = 400;  // Fixed add-on in USD
+
+  const inrTable = document.getElementById('inr-table');
+  const usdTable = document.getElementById('usd-table');
+
+  // Populate INR Table
+  services.forEach(service => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${service.name}</td>
+      <td class="price">₹${service.priceINR}</td>
+    `;
+    inrTable.appendChild(row);
+  });
+
+  // Populate USD Table
+  services.forEach(service => {
+    const priceUSD = (service.priceINR * exchangeRate) + usdAdditional;
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${service.name}</td>
+      <td class="price">$${priceUSD.toFixed(2)}</td>
+    `;
+    usdTable.appendChild(row);
+  });
+</script>
+
+</body>
+</html>
