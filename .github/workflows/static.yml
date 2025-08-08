@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dannand</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #f8f2ff, #f2eaff);
+      color: #2e003e;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin: 20px 10px 0;
+      color: #5f00a5;
+    }
+
+    #date {
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 20px;
+      color: #5f00a5;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      padding: 30px 20px;
+    }
+
+    .pricing-table {
+      background: #fff0ff;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(128, 0, 128, 0.2);
+      overflow: hidden;
+      width: 100%;
+      max-width: 390px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 2px solid #d896ff;
+      margin-bottom: 20px;
+    }
+
+    .pricing-table:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 35px rgba(139, 0, 139, 0.3);
+    }
+
+    .pricing-header {
+      background: linear-gradient(to right, #a000ff, #d896ff);
+      color: white;
+      padding: 20px;
+      font-size: 1.4rem;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 300px;
+    }
+
+    td, th {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid #e2c7ff;
+      white-space: nowrap;
+    }
+
+    th {
+      background-color: #ecd6ff;
+      font-weight: 600;
+      color: #4b007d;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #6a009e;
+    }
+
+    .payment-section {
+      text-align: center;
+      padding: 40px 20px;
+      background: #f9f0ff;
+      border-top: 3px solid #d896ff;
+    }
+
+    .payment-options {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .payment-method {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #ffffff;
+      padding: 14px 22px;
+      border: 2px solid #d896ff;
+      border-radius: 14px;
+      box-shadow: 0 6px 15px rgba(95, 0, 165, 0.12);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .payment-method:hover {
+      transform: scale(1.05);
+    }
+
+    .payment-method img {
+      height: 34px;
+      width: auto;
+    }
+
+    .payment-method span {
+      font-size: 1rem;
+      color: #2e003e;
+      font-weight: 500;
+    }
+
+    .copy-icon {
+      cursor: pointer;
+      font-size: 1.2rem;
+      margin-left: 8px;
+      color: #5f00a5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #5f00a5;
+      color: white;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 10px;
+      }
+
+      .payment-options {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .payment-method {
+        width: 90%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Dannand</h1>
+  <div id="date"></div>
+
+  <div class="container">
+    <!-- INR Base Price Table -->
+    <div class="pricing-table">
+      <div class="pricing-header">Final Prices in INR (₹)</div>
+      <div class="table-wrapper">
+        <table>
+          <tbody id="inr-table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Converted Prices Table -->
+    <div class="pricing-table">
+      <div class="pricing-header">Converted Prices in USD ($)</div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>USD</th>
+              <th>USD to INR</th>
+            </tr>
+          </thead>
+          <tbody id="usd-table"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="payment-section">
+    <h2>Pay Now</h2>
+    <div class="payment-options">
+      <div class="payment-method">
+        <a href="https://paypal.me/SudiptaChatterjee555" target="_blank" rel="noopener">
+          <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal Logo" />
+          <span id="paypal-id">Pay via PayPal</span>
+        </a>
+        <span class="copy-icon" onclick="copyText('SudiptaChatterjee555')">📋</span>
+      </div>
+
+      <div class="payment-method">
+       <img width="96" height="96" src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/96/external-google-pay-is-the-fast-simple-way-to-pay-online-in-stores-and-more-logo-color-tal-revivo.png" alt="external-google-pay-is-the-fast-simple-way-to-pay-online-in-stores-and-more-logo-color-tal-revivo"/>
+        <span id="upi-id">sudipta.9055-9@waicici</span>
+        <span class="copy-icon" onclick="copyText('sudipta.9055-9@waicici')">📋</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Made with ❤️ by Sudipta Chatterjee
+  </footer>
+
+  <script>
+    const services = [
+      { name: 'Astrology', priceINR: 477 },
+      { name: 'Numerology (Basic)', priceINR: 777 },
+      { name: 'Numerology (Advanced)', priceINR: 888 },
+      { name: 'Tarot Reading', priceINR: 1277 },
+      { name: 'Vastu Consultation', priceINR: 2777 },
+    ];
+
+    const addINR = 400;
+    const extraUSD = 10;
+
+    async function fetchExchangeRate() {
+      try {
+        const response = await fetch('https://api.exchangerate.host/latest?base=INR&symbols=USD');
+        const data = await response.json();
+        return data.rates.USD;
+      } catch {
+        return 1 / 83.73; // fallback rate
+      }
+    }
+
+    function copyText(text) {
+      navigator.clipboard.writeText(text);
+      alert(`Copied: ${text}`);
+    }
+
+    document.getElementById("date").textContent = "Date: " + new Date().toLocaleDateString();
+
+    (async () => {
+      const rate = await fetchExchangeRate();
+      const reverseRate = 1 / rate;
+
+      const inrTable = document.getElementById('inr-table');
+      const usdTable = document.getElementById('usd-table');
+
+      services.forEach(service => {
+        const finalINR = service.priceINR + addINR;
+
+        const baseUSD = finalINR * rate;
+        const totalUSD = Math.round(baseUSD + extraUSD);
+
+        const usdToINR = Math.round(totalUSD * reverseRate);
+
+        // INR Row
+        const rowINR = document.createElement('tr');
+        rowINR.innerHTML = `
+          <td>${service.name}</td>
+          <td class="price">₹${finalINR}</td>
+        `;
+        inrTable.appendChild(rowINR);
+
+        // USD Row
+        const rowUSD = document.createElement('tr');
+        rowUSD.innerHTML = `
+          <td>${service.name}</td>
+          <td class="price">$${totalUSD}</td>
+          <td class="price">₹${usdToINR}</td>
+        `;
+        usdTable.appendChild(rowUSD);
+      });
+    })();
+  </script>
+</body>
+</html>
